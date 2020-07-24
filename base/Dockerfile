@@ -1,9 +1,13 @@
 # Starting from Felipe's base jupyter image (https://github.com/fgiuste7/Docker/blob/master/Base/jupyter/Dockerfile)
 FROM fgiuste/base:jupyter
 
-# switch to root user and move to /mnt dir
+# create a user
 USER root
-WORKDIR /mnt/
+RUN useradd -ms /bin/bash mainuser
+
+# swith to new user
+USER mainuser
+
 
 # Update system and install dependencies
 RUN apt-get update
